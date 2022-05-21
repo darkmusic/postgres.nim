@@ -204,7 +204,7 @@ template tryParseNumRows(data: string, fromIdx: int, success: var bool, dest: va
     dest = 0
     success = false
 
-proc execute*(conn: PostgresConnection | AsyncPostgresConnection, query: string): Future[BiggestInt] {.multisync, discardable.} =
+proc execute*(conn: PostgresConnection | AsyncPostgresConnection, query: string): Future[BiggestInt] {.multisync.} =
   ## Run an SQL query with no parameters against the connection.
   ##
   ## Returns the number of rows affected by the query. In the case that the query contains multiple commands, only the number of rows affected by the first command will be returned.

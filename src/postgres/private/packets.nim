@@ -378,7 +378,7 @@ proc terminateMessageToString(m: PostgresMessage, dest: var string) {.inline.} =
 
   dest = $buff
 
-proc initParseMessage*(name: string, query: string, parameterDataTypes: seq[Oid] = nil): PostgresMessage =
+proc initParseMessage*(name: string, query: string, parameterDataTypes: seq[Oid] = @[]): PostgresMessage =
   result = PostgresMessage(
     isBackend: false,
     frontEndMessageType: FrontEndMessageType.Parse,
@@ -680,7 +680,7 @@ proc parseDataRow(data: string): PostgresMessage {.inline.} =
     for i in 0..<numColumns:
       columnLength = buff.readInt32()
       if columnLength == -1:
-        columnData = nil
+        columnData = ""
       elif columnLength == 0:
         columnData = ""
       else:

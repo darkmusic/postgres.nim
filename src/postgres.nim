@@ -40,7 +40,7 @@ type
 
   PostgresReaderBase[TConnection] = object of RootObj
     connection: TConnection
-    fieldNamesToIndexes: TableRef[string, int]
+    fieldNamesToIndexes*: TableRef[string, int]
       ## Maps field names to their positions
     numRows*: BiggestInt
     isComplete*: bool
